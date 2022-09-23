@@ -1,7 +1,3 @@
-/*
-  TODO:
-  16. Проверка на содержание другого списка в списке, можно сделать целочисленного типа
-*/
 #include <iostream>
 
 using namespace std;
@@ -39,6 +35,8 @@ struct List
 
     new_element->next_element = first_element;
     first_element = new_element;
+    cout << "Element was added\n"
+         << endl;
   }
 
   void push_back(int val)
@@ -54,6 +52,8 @@ struct List
     }
     last_element->next_element = new_element;
     last_element = new_element;
+    cout << "Element was added\n"
+         << endl;
   }
 
   void pop_front()
@@ -65,6 +65,8 @@ struct List
     Node *temp = first_element;
     first_element = temp->next_element;
     delete temp;
+    cout << "Element was removed\n"
+         << endl;
   }
 
   void pop_back()
@@ -85,6 +87,8 @@ struct List
     temp->next_element = nullptr;
     delete last_element;
     last_element = temp;
+    cout << "Element was removed\n"
+         << endl;
   }
 
   unsigned int get_size()
@@ -139,6 +143,8 @@ struct List
 
     temp->next_element = del_element->next_element;
     delete del_element;
+    cout << "Element was removed\n"
+         << endl;
   }
 
   void clear()
@@ -160,12 +166,16 @@ struct List
     Node *new_element = new Node(val);
     new_element->next_element = get_element(index);
     get_element(index - 1)->next_element = new_element;
+    cout << "Element was added\n"
+         << endl;
   }
 
   void print_list()
   {
+    cout << "\nList: ";
     if (is_empty())
     {
+      cout << "\n";
       return;
     }
     Node *temp = first_element;
@@ -175,5 +185,41 @@ struct List
       temp = temp->next_element;
     }
     cout << endl;
+  }
+
+  bool is_another_list_here()
+  {
+    int n;
+    cout << "Enter an amount of elements: ";
+    cin >> n;
+    int another_list[n];
+    cout << "Enter " << n << " elements: ";
+    for (int i = 0; i < n; i++)
+    {
+      cin >> another_list[i];
+    }
+    cout << endl;
+    for (int i = 0; i < sizeof(another_list) / sizeof(another_list[0]); i++)
+    {
+      bool is_here = false;
+      Node *temp = first_element;
+      while (temp)
+      {
+        if (temp->value == another_list[i])
+        {
+          is_here = true;
+          break;
+        }
+        temp = temp->next_element;
+      }
+
+      if (!is_here)
+      {
+        cout << "List not contain entered list" << endl;
+        return false;
+      }
+    }
+    cout << "List contains" << endl;
+    return true;
   }
 };
