@@ -25,8 +25,8 @@ string to_binary(const T &num)
 
 string mirror_shuffle(string number, int index, int amount)
 {
-  string output = number;
-  int begin = number.length() - index - 1;
+  string output = number.data();
+  int begin = number.length() - index;
   int end = begin + amount;
 
   if ((begin + amount - 1) > number.length() || number.length() < begin)

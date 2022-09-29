@@ -51,7 +51,7 @@ int main()
 
         mirrored = mirror_shuffle(binary_num, index, amount);
         cout << mirrored << endl;
-        cout << to_decimal<char>(mirrored) << endl;
+        cout << (int)to_decimal<char>(mirrored) << endl;
       }
 
       break;
