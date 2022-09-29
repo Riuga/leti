@@ -1,7 +1,3 @@
-/*
-  11. Выполнить зеркальную перестановку в группе рядом стоящих разрядов, количество которых и номер старшего разряда в группе задаются с клавиатуры.
-*/
-
 #include <iostream>
 #include <cmath>
 
@@ -33,10 +29,10 @@ string mirror_shuffle(string number, int index, int amount)
   int begin = number.length() - index - 1;
   int end = begin + amount;
 
-  if ((begin + amount - 1) < number.length() || number.length() < begin)
+  if ((begin + amount - 1) > number.length() || number.length() < begin)
   {
     cout << "Incorrect input" << endl;
-    return;
+    return "";
   }
 
   for (int i = 0; i < amount / 2; i++)
@@ -51,6 +47,25 @@ string mirror_shuffle(string number, int index, int amount)
 }
 
 template <typename T>
-T to_decimal() {
-  
+T to_decimal(const string &number)
+{
+  T num;
+
+  auto last = number.end() - 1;
+  void *p = calloc(sizeof(number.length()), 1);
+
+  for (auto i = number.begin(); i != number.end(); i++)
+  {
+    *(long *)p += (*i == '1' ? 1 : 0);
+
+    if (i != last)
+    {
+      *(long *)p <<= 1;
+    }
+  }
+
+  num = *(T *)p;
+  free(p);
+
+  return num;
 }
