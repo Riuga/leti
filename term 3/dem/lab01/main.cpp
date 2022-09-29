@@ -77,7 +77,7 @@ int main()
         cin >> amount;
 
         mirrored = mirror_shuffle(binary_num, index, amount);
-        cout << to_decimal<char>(mirrored) << endl;
+        cout << to_decimal<long double>(mirrored) << endl;
       }
       break;
 
