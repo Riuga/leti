@@ -49,23 +49,18 @@ string mirror_shuffle(string number, int index, int amount)
 template <typename T>
 T to_decimal(const string &number)
 {
-  T num;
+  T num{};
+  const int8_t BYTE_SIZE = 8;
+  size_t bits = sizeof(T) * BYTE_SIZE;
 
-  auto last = number.end() - 1;
-  void *p = calloc(sizeof(number.length()), 1);
-
-  for (auto i = number.begin(); i != number.end(); i++)
+  for (size_t i = 0; i < bits; ++i)
   {
-    *(long *)p += (*i == '1' ? 1 : 0);
-
-    if (i != last)
+    __int128 n = 1;
+    if (number[i] == '1')
     {
-      *(long *)p <<= 1;
+      *(__int128 *)&num ^= (n << bits - i - 1);
     }
   }
-
-  num = *(T *)p;
-  free(p);
 
   return num;
 }
