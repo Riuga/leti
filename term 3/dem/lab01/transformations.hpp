@@ -27,9 +27,9 @@ string mirror_shuffle(string number, int index, int amount)
 {
   string output = number.data();
   int begin = number.length() - index;
-  int end = begin + amount;
+  int end = begin + amount - 1;
 
-  if ((begin + amount - 1) > number.length() || number.length() < begin)
+  if (end > number.length() || number.length() < begin)
   {
     cout << "Incorrect input" << endl;
     return "";
