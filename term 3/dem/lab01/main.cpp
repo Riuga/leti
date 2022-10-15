@@ -14,8 +14,8 @@ int main()
   char *num;
   char yes;
   long double ldnum;
-  string binary_num;
-  string mirrored;
+  size_t binary_num;
+  size_t reversed;
 
   cout << "Type 1 to transform char to binary" << endl;
   cout << "Type 2 to transform long double to binary" << endl;
@@ -33,15 +33,15 @@ int main()
       cout << "Enter your char: ";
       cin >> num;
       cout << endl;
+
       conv_num = (char)atoi(num);
       binary_num = to_binary<char>(conv_num);
-      cout << binary_num << "\n"
-           << endl;
+
       cout << "Do you want to mirror some numbers? y/N" << endl;
 
       cin >> yes;
 
-      if (yes = 'y')
+      if (yes == 'y')
       {
         cout << "Enter an index: ";
         cin >> index;
@@ -49,9 +49,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirrored = mirror_shuffle(binary_num, index, amount);
-        cout << mirrored << endl;
-        cout << (int)to_decimal<char>(mirrored) << endl;
+        reversed = partial_inverse(conv_num, index, amount);
       }
 
       break;
@@ -60,15 +58,13 @@ int main()
       cout << "Enter your long double: ";
       cin >> ldnum;
       cout << endl;
+
       binary_num = to_binary<long double>(ldnum);
-      cout << binary_num << "\n"
-           << endl;
 
       cout << "Do you want to mirror some numbers? y/N" << endl;
-
       cin >> yes;
 
-      if (yes = 'y')
+      if (yes == 'y')
       {
         cout << "Enter an index: ";
         cin >> index;
@@ -76,8 +72,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirrored = mirror_shuffle(binary_num, index, amount);
-        cout << to_decimal<long double>(mirrored) << endl;
+        reversed = partial_inverse(binary_num, index, amount);
       }
       break;
 
