@@ -11,7 +11,7 @@ int main()
   int index;
   int amount;
   char conv_num;
-  char *num;
+  char num;
   char yes;
   long double ldnum;
   size_t binary_num;
@@ -34,7 +34,7 @@ int main()
       cin >> num;
       cout << endl;
 
-      conv_num = (char)atoi(num);
+      conv_num = (char)atoi(&num);
       binary_num = to_binary<char>(conv_num);
 
       cout << "Do you want to mirror some numbers? y/N" << endl;
