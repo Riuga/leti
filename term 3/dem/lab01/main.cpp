@@ -1,6 +1,7 @@
 // Variant 11
 
 #include <iostream>
+#include <string>
 #include "transformations.hpp"
 
 using namespace std;
@@ -8,14 +9,13 @@ using namespace std;
 int main()
 {
   int i;
-  int index;
-  int amount;
+  u_int8_t index;
+  u_int8_t amount;
   char conv_num;
-  char num;
+  string num;
   char yes;
   long double ldnum;
   size_t binary_num;
-  size_t reversed;
 
   cout << "Type 1 to transform char to binary" << endl;
   cout << "Type 2 to transform long double to binary" << endl;
@@ -34,8 +34,8 @@ int main()
       cin >> num;
       cout << endl;
 
-      conv_num = (char)atoi(&num);
-      binary_num = to_binary<char>(conv_num);
+      conv_num = (char)atoi(num.c_str());
+      to_binary<char>(conv_num);
 
       cout << "Do you want to mirror some numbers? y/N" << endl;
 
@@ -49,7 +49,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        reversed = partial_inverse(conv_num, index, amount);
+        mirror_range(conv_num, index, amount);
       }
 
       break;
@@ -59,7 +59,7 @@ int main()
       cin >> ldnum;
       cout << endl;
 
-      binary_num = to_binary<long double>(ldnum);
+      to_binary<long double>(ldnum);
 
       cout << "Do you want to mirror some numbers? y/N" << endl;
       cin >> yes;
@@ -72,7 +72,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        reversed = partial_inverse(binary_num, index, amount);
+        mirror_range(ldnum, index, amount);
       }
       break;
 
