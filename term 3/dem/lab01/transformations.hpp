@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <cstdint>
 #include <string>
 
 using namespace std;
@@ -65,11 +66,11 @@ void swap_bits(T &src, uint8_t pos1, uint8_t pos2)
 
     if (n == pos1)
     {
-      bit = (tmp >> pos2) & 1;
+      bit = (*(__int128 *)&tmp >> pos2) & 1;
     }
     else if (n == pos2)
     {
-      bit = (tmp >> pos1) & 1;
+      bit = (*(__int128 *)&tmp >> pos1) & 1;
     }
     else
     {
@@ -78,7 +79,7 @@ void swap_bits(T &src, uint8_t pos1, uint8_t pos2)
 
     if (bit)
     { // bit == 1
-      src |= (bit << n);
+      *(__int128*)&src |= (bit << n);
     }
     else
     { // bit == 0
@@ -86,7 +87,7 @@ void swap_bits(T &src, uint8_t pos1, uint8_t pos2)
 
       mask = (mask << bits) - 1;
       mask = partial_inverse(mask, n, 1);
-      src &= mask;
+      *(__int128*)&src &= mask;
     }
   }
 }

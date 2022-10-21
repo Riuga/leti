@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 #include "transformations.hpp"
 
 using namespace std;
@@ -9,8 +10,8 @@ using namespace std;
 int main()
 {
   int i;
-  u_int8_t index;
-  u_int8_t amount;
+  uint8_t index;
+  uint8_t amount;
   char conv_num;
   string num;
   char yes;
