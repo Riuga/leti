@@ -51,7 +51,8 @@ int main()
         cin >> amount;
 
         mirror_range(&conv_num, index, amount);
-        cout << conv_num << endl;
+        to_binary(conv_num);
+        cout << (int)conv_num << endl;
       }
 
       break;

@@ -49,8 +49,6 @@ T partial_inverse(const T &src, uint8_t start, uint8_t len)
     *(__int128 *)&num ^= mask << n;
   }
 
-  to_binary(num);
-
   return num;
 }
 
