@@ -50,7 +50,8 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirror_range(conv_num, index, amount);
+        mirror_range(&conv_num, index, amount);
+        cout << conv_num << endl;
       }
 
       break;
@@ -73,7 +74,8 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirror_range(ldnum, index, amount);
+        mirror_range(&ldnum, index, amount);
+        cout << ldnum << endl;
       }
       break;
 
