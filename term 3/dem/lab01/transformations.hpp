@@ -56,7 +56,7 @@ template <typename T, typename U>
 void swap_bits(U *src, uint8_t pos1, uint8_t pos2)
 {
   uint8_t bits = sizeof(T) * BYTE_SIZE;
-  T tmp = *src;
+  T tmp = *(T *)src;
 
   for (uint8_t n = 0; n < bits; ++n)
   {
@@ -77,7 +77,7 @@ void swap_bits(U *src, uint8_t pos1, uint8_t pos2)
 
     if (bit)
     {
-      *src |= (bit << n);
+      *(T *)src |= (bit << n);
     }
     else
     {
@@ -85,7 +85,7 @@ void swap_bits(U *src, uint8_t pos1, uint8_t pos2)
 
       mask = (mask << bits) - 1;
       mask = partial_inverse(mask, n, 1);
-      *src &= mask;
+      *(T *)src &= mask;
     }
   }
 }
