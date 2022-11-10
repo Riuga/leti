@@ -50,7 +50,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirror_range(&conv_num, index, amount);
+        mirror_range<char>(&conv_num, index, amount);
         to_binary(conv_num);
         cout << (int)conv_num << endl;
       }
@@ -75,7 +75,7 @@ int main()
         cout << "Enter an amount of numbers to shuffle: ";
         cin >> amount;
 
-        mirror_range(&ldnum, index, amount);
+        mirror_range<__int128>(&ldnum, index, amount);
         cout << ldnum << endl;
       }
       break;

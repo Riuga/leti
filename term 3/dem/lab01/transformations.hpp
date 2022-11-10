@@ -52,23 +52,23 @@ T partial_inverse(const T &src, uint8_t start, uint8_t len)
   return num;
 }
 
-template <typename T>
-void swap_bits(T *src, uint8_t pos1, uint8_t pos2)
+template <typename T, typename U>
+void swap_bits(U *src, uint8_t pos1, uint8_t pos2)
 {
   uint8_t bits = sizeof(T) * BYTE_SIZE;
   T tmp = *src;
 
   for (uint8_t n = 0; n < bits; ++n)
   {
-    __int128 bit{};
+    T bit{};
 
     if (n == pos1)
     {
-      bit = (*(__int128 *)&tmp >> pos2) & 1;
+      bit = (tmp >> pos2) & 1;
     }
     else if (n == pos2)
     {
-      bit = (*(__int128 *)&tmp >> pos1) & 1;
+      bit = (tmp >> pos1) & 1;
     }
     else
     {
@@ -76,22 +76,22 @@ void swap_bits(T *src, uint8_t pos1, uint8_t pos2)
     }
 
     if (bit)
-    { // bit == 1
-      *(__int128 *)src |= (bit << n);
+    {
+      *src |= (bit << n);
     }
     else
-    { // bit == 0
-      __int128 mask = 1;
+    {
+      T mask = 1;
 
       mask = (mask << bits) - 1;
       mask = partial_inverse(mask, n, 1);
-      *(__int128 *)src &= mask;
+      *src &= mask;
     }
   }
 }
 
-template <typename T>
-void mirror_range(T *src, uint8_t start, uint8_t len)
+template <typename T, typename U>
+void mirror_range(U *src, uint8_t start, uint8_t len)
 {
   uint8_t bits = sizeof(T) * BYTE_SIZE;
   uint8_t end = start + len < bits ? start + len : bits;
@@ -104,6 +104,6 @@ void mirror_range(T *src, uint8_t start, uint8_t len)
     {
       x -= 1;
     }
-    swap_bits(src, n, x);
+    swap_bits<T>(src, n, x);
   }
 }
