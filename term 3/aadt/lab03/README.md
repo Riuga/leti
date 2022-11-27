@@ -1,4 +1,4 @@
-You can check it on https://leti.vercel.app/ or build locally:
+You can check it on https://sorts-indol.vercel.app/ or build locally:
 ```
 git clone ...
 npm install
