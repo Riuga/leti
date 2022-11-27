@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>lab03</title>
+		<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				Amount of elements (min):
+				<input type="number" id="min-el" name="min-el" min="1000" />
+				<br />
+				Amount of elements (max):
+				<input type="number" id="max-el" name="max-el" min="1" /> <br />
+				Step: <input type="number" id="step" name="step" min="1" />
+				<br />
+				<button id="start">Submit</button>
+			</div>
+      <ol>
+				<li>Insertion Sort</li>
+				<li>Selection Sort</li>
+				<li>Bubble Sort</li>
+				<li>Merge Sort</li>
+				<li>Shell Sort</li>
+				<li>Quick Sort</li>
+				<li>JS built-in Sort</li>
+			</ol>
+			<div id="calculator" style="width: 1000px; height: 800px"></div>
+		</div>
+		<script type="module" src="/main.js"></script>
+	</body>
+</html>
