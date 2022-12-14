@@ -1,23 +1,31 @@
 export class Node {
-	constructor(val) {
+	constructor(val, x, y) {
 		this.value = val;
 		this.left = null;
 		this.right = null;
 		this.parent = null;
+		this.x = x;
+		this.y = y;
+		this.level;
 	}
 
 	addNode(n) {
+		n.level++;
 		if (n.value < this.value) {
 			if (this.left === null) {
 				this.left = n;
-				n.parent = this;
+				this.left.parent = this;
+				this.left.x = this.x - 500 / 2 ** this.level;
+				this.left.y = this.y + 20 * this.level;
 			} else {
 				this.left.addNode(n);
 			}
 		} else if (n.value > this.value) {
 			if (this.right === null) {
 				this.right = n;
-				n.parent = this;
+				this.right.parent = this;
+				this.right.x = this.x + 500 / 2 ** this.level;
+				this.right.y = this.y + 20 * this.level;
 			} else {
 				this.right.addNode(n);
 			}
@@ -28,7 +36,7 @@ export class Node {
 		if (n.left === null) {
 			return n;
 		}
-		
+
 		return this.findMinNode(n.left);
 	}
 
@@ -55,13 +63,19 @@ export class Node {
 		n = newNode;
 	}
 
-	inorder(output) {
+	inorder(output, points) {
 		if (this.left != null) {
-			this.left.inorder(output);
+			this.left.inorder(output, points);
 		}
 		output.textContent += `${this.value} `;
+		points.push({
+			x: this.x,
+			y: this.y,
+			parent: this.parent,
+			value: this.value,
+		});
 		if (this.right != null) {
-			this.right.inorder(output);
+			this.right.inorder(output, points);
 		}
 	}
 
@@ -83,6 +97,20 @@ export class Node {
 			this.right.postorder(output);
 		}
 		output.textContent += `${this.value} `;
+	}
+
+	breadth(output, queue) {
+		if (this.left) {
+			queue.push(this.left);
+		}
+		if (this.right) {
+			queue.push(this.right);
+		}
+
+		output.textContent += `${this.value} `
+		if (queue.length != 0) {
+			queue.shift().breadth(output, queue);
+		}
 	}
 
 	search(val) {

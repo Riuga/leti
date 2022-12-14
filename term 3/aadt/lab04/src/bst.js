@@ -11,9 +11,12 @@ export class Tree {
 
 	addValue(val) {
 		const n = new Node(val);
+		n.level = 1;
 
 		if (this.isEmpty()) {
 			this.root = n;
+			this.root.x = 1000 / 2;
+			this.root.y = 16;
 		} else {
 			this.root.addNode(n);
 		}
@@ -60,7 +63,9 @@ export class Tree {
 	}
 
 	inorderTraverse(output) {
-		this.root.inorder(output);
+		const points = [];
+		this.root.inorder(output, points);
+		return points;
 	}
 
 	preorderTraverse(output) {
@@ -69,5 +74,9 @@ export class Tree {
 
 	postorderTraverse(output) {
 		this.root.postorder(output);
+	}
+
+	breadthTraverse(output) {
+		this.root.breadth(output, []);
 	}
 }
