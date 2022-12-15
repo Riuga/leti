@@ -15,8 +15,6 @@ export class Node {
 			if (this.left === null) {
 				this.left = n;
 				this.left.parent = this;
-				this.left.x = this.x - 500 / 2 ** this.level;
-				this.left.y = this.y + 20 * this.level;
 			} else {
 				this.left.addNode(n);
 			}
@@ -24,12 +22,27 @@ export class Node {
 			if (this.right === null) {
 				this.right = n;
 				this.right.parent = this;
-				this.right.x = this.x + 500 / 2 ** this.level;
-				this.right.y = this.y + 20 * this.level;
 			} else {
 				this.right.addNode(n);
 			}
 		}
+	}
+
+	setCoordinates() {
+		if (this.left) {
+			this.left.x = this.x - 500 / 2 ** this.level;
+			this.left.y = this.y + 20 * this.level;
+			this.left.parent = this;
+			this.left.setCoordinates();
+		}
+
+		if (this.right) {
+			this.right.x = this.x + 500 / 2 ** this.level;
+			this.right.y = this.y + 20 * this.level;
+			this.right.parent = this;
+			this.right.setCoordinates();
+		}
+
 	}
 
 	findMinNode(n) {
@@ -40,42 +53,31 @@ export class Node {
 		return this.findMinNode(n.left);
 	}
 
-	removeNode(n) {
-		if (n.left === null && n.right === null) {
-			n = null;
-			return n;
-		}
-
-		if (n.left === null) {
-			n = n.right;
-			return n;
-		}
-
-		if (n.right === null) {
-			n = n.left;
-			return n;
-		}
-
-		const newNode = this.findMinNode(n.right);
-		newNode.left = n.left;
-		newNode.parent.left = null;
-		newNode.parent = n.parent;
-		n = newNode;
-	}
-
-	inorder(output, points) {
+	getPoints(points) {
 		if (this.left != null) {
-			this.left.inorder(output, points);
+			this.left.getPoints(points);
 		}
-		output.textContent += `${this.value} `;
+
 		points.push({
 			x: this.x,
 			y: this.y,
 			parent: this.parent,
 			value: this.value,
 		});
+
 		if (this.right != null) {
-			this.right.inorder(output, points);
+			this.right.getPoints(points);
+		}
+	}
+
+	inorder(output) {
+		if (this.left != null) {
+			this.left.inorder(output);
+		}
+		output.textContent += `${this.value} `;
+		
+		if (this.right != null) {
+			this.right.inorder(output);
 		}
 	}
 
@@ -107,7 +109,7 @@ export class Node {
 			queue.push(this.right);
 		}
 
-		output.textContent += `${this.value} `
+		output.textContent += `${this.value} `;
 		if (queue.length != 0) {
 			queue.shift().breadth(output, queue);
 		}

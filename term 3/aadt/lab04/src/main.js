@@ -21,8 +21,8 @@ add.addEventListener("click", () => {
 });
 
 del.addEventListener("click", () => {
-	let value = Number(document.getElementById("del").value);
-	tree.removeElement(value);
+	let value = Number(document.getElementById("remove").value);
+	tree.remove(value);
 	updateOutput();
 });
 
@@ -49,12 +49,14 @@ function updateOutput() {
 	preorder.textContent = "Preorder: ";
 	postorder.textContent = "Postorder: ";
 	breadth.textContent = "Breadth: ";
-	points = tree.inorderTraverse(inorder);
+	tree.inorderTraverse(inorder);
 	tree.preorderTraverse(preorder);
 	tree.postorderTraverse(postorder);
 	tree.breadthTraverse(breadth);
 	minimal.textContent = `Min: ${tree.getMin()}`;
 	maximum.textContent = `Max: ${tree.getMax()}`;
+
+	points = tree.getPoints();
 }
 
 new p5((p5) => {

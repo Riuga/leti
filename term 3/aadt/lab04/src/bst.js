@@ -62,10 +62,40 @@ export class Tree {
 		this.root.removeNode(this.getElement(val));
 	}
 
+	remove(value) {
+		this.root = this.removeNode(this.root, value);
+	}
+
+	removeNode(current, value) {
+		if (current === null) return current;
+
+		if (value === current.value) {
+			if (current.left === null && current.right === null) {
+				return null;
+			} else if (current.left === null) {
+				return current.right;
+			} else if (current.right === null) {
+				return current.left;
+			} else {
+				let tempNode = this.getMin(current.right);
+				current.value = tempNode.value;
+				current.right = this.removeNode(current.right, tempNode.value);
+
+				return current;
+			}
+		} else if (value < current.value) {
+			current.left = this.removeNode(current.left, value);
+
+			return current;
+		} else {
+			current.right = this.removeNode(current.right, value);
+
+			return current;
+		}
+	}
+
 	inorderTraverse(output) {
-		const points = [];
-		this.root.inorder(output, points);
-		return points;
+		this.root.inorder(output, []);
 	}
 
 	preorderTraverse(output) {
@@ -78,5 +108,12 @@ export class Tree {
 
 	breadthTraverse(output) {
 		this.root.breadth(output, []);
+	}
+
+	getPoints() {
+		this.root.setCoordinates();
+		const points = [];
+		this.root.getPoints(points);
+		return points;
 	}
 }
