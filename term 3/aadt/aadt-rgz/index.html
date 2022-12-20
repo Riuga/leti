@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RGZ</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>RGZ</title>
+	</head>
+	<body>
+		<div id="app">
+			Write text: <input type="text" id="setup" />
+			<button id="setup-btn">Submit</button>
+			<p id="dictionary"></p>
+			Text to codes: <input type="text" id="to-codes" />
+			<button id="to-codes-btn">Submit</button>
+			<p id="to-codes-output"></p>
+			Codes to text: <input type="text" id="to-text" />
+			<button id="to-text-btn">Submit</button>
+			<p id="to-text-output"></p>
+		</div>
+		<script type="module" src="/main.js"></script>
+	</body>
 </html>
