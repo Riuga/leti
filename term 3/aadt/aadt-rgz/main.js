@@ -1,4 +1,3 @@
-// Реализовать сжатие символьных данных и обратную операцию с помощью алгоритма Хаффмана.
 function getDictionary(string) {
 	return [...string].reduce(
 		(symbol, frequency) =>
