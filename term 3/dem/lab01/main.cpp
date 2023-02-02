@@ -32,7 +32,7 @@ void to_binary(const T &num)
   cout << output << endl;
 }
 
-unsigned long long reverse_long_double(long double ldnum, int count, int num)
+unsigned long long shiffle_long_double(long double ldnum, int count, int num)
 {
   unsigned long long shift = (unsigned long long)num - (unsigned long long)count + 1;
   type in_long_double;
@@ -51,7 +51,7 @@ unsigned long long reverse_long_double(long double ldnum, int count, int num)
   return (in_long_double.ll & ~mask) | rev_ext;
 }
 
-unsigned int reverse_char(unsigned int num, int c, int n)
+unsigned int shiffle_char(unsigned int num, int c, int n)
 {
   int shift = n - c + 1;
   unsigned int mask = ((1 << c) - 1) << shift;
@@ -110,9 +110,9 @@ int main()
         cout << "Enter an index to start with: ";
         scanf("%d", &begin);
 
-        char reversed = reverse_char(chnum, amount, begin);
-        printf("%u\n", reversed);
-        to_binary(reversed);
+        char shiffled = shiffle_char(chnum, amount, begin);
+        printf("%u\n", shiffled);
+        to_binary(shiffled);
       }
 
       break;
@@ -138,7 +138,7 @@ int main()
         cout << "Enter an index to start with: ";
         cin >> begin;
 
-        result = reverse_long_double(ldnum, amount, begin);
+        result = shiffle_long_double(ldnum, amount, begin);
         to_binary(result);
         cout << result << endl;
       }
