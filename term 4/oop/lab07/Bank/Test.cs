@@ -1,9 +1,5 @@
 using System;
 
-/// <summary>
-///    Test harness.
-/// </summary>
-
 public class Test
 {
   public static void Main()

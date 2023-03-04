@@ -1,0 +1,17 @@
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\bin\Debug\net6.0-windows\OopLabs.Linq.exe
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\bin\Debug\net6.0-windows\OopLabs.Linq.deps.json
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\bin\Debug\net6.0-windows\OopLabs.Linq.runtimeconfig.json
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\bin\Debug\net6.0-windows\OopLabs.Linq.dll
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\bin\Debug\net6.0-windows\OopLabs.Linq.pdb
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.csproj.AssemblyReference.cache
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.Form1.resources
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.csproj.GenerateResource.cache
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.AssemblyInfoInputs.cache
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.AssemblyInfo.cs
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.csproj.CoreCompileInputs.cache
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.dll
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\refint\OopLabs.Linq.dll
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.pdb
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\OopLabs.Linq.genruntimeconfig.cache
+C:\Users\labs\source\repos\OopLabs.Linq\OopLabs.Linq\obj\Debug\net6.0-windows\ref\OopLabs.Linq.dll
