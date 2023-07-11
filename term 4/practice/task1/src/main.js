@@ -1,7 +1,10 @@
 import p5 from 'p5'
 
 let clr
-let hexRadius
+let hexRadius = 20
+let rollSpeed = 40.0
+let invRadius = 20
+let step = 720 * 0.5
 
 const clrApply = document
   .querySelector('#color-apply')
@@ -15,29 +18,42 @@ const radApply = document
     hexRadius = document.querySelector('#radius').value
   })
 
+const rollApply = document
+  .querySelector('#roll-apply')
+  .addEventListener('click', () => {
+    rollSpeed = 1 / document.querySelector('#roll-speed').value
+  })
+
+const involuteRadiusApply = document
+  .querySelector('#invRad-apply')
+  .addEventListener('click', () => {
+    invRadius = document.querySelector('#involute-radius').value
+  })
+
+const stepApply = document
+  .querySelector('#step-apply')
+  .addEventListener('click', () => {
+    step = 720 * document.querySelector('#step').value
+  })
+
 new p5((p5) => {
-  const radius = 20
-  const divisions = 1440
-  const invPoints = involute(radius, divisions)
-  let trajectory = []
-
   let i = 0
-
+  let trajectory = []
   p5.setup = () => {
     p5.createCanvas(1000, 1000)
   }
 
   p5.draw = () => {
     p5.background(250)
+    let invPoints = involute(invRadius, step)
     drawLines(invPoints, 51)
-
     p5.push()
     p5.translate(invPoints[i].x, invPoints[i].y)
-    p5.rotate(p5.frameCount / 10.0)
+    p5.rotate(p5.frameCount / rollSpeed)
     polygon(0, 0, hexRadius || 20, 6, clr || 51)
     trajectory.push({
-      x: (radius-5) * p5.cos(p5.frameCount / 10.0) + invPoints[i].x,
-      y: (radius-5) * p5.sin(p5.frameCount / 10.0) + invPoints[i].y,
+      x: (hexRadius - 5) * p5.cos(p5.frameCount / rollSpeed) + invPoints[i].x,
+      y: (hexRadius - 5) * p5.sin(p5.frameCount / rollSpeed) + invPoints[i].y,
     })
     p5.pop()
 

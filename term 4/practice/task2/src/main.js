@@ -39,7 +39,6 @@ new p5((p5) => {
 
   p5.draw = () => {
     p5.background(200)
-    p5.fill(51)
     for (let i = 0; i < fractals.length; i++) {
       fractals[i].show(p5)
     }
@@ -48,7 +47,7 @@ new p5((p5) => {
       pts.forEach((point) => {
         p5.push()
         p5.translate(point.x, point.y)
-        p5.image(point.value, 0, 0, 50, 50)
+        p5.image(point.value, 0, 0, 100, 100)
         p5.pop()
         if (point.parent) {
           p5.stroke(51)
@@ -68,6 +67,7 @@ new p5((p5) => {
     }
     tree.addValue(whiteSquares.get(), 255)
     tree.addValue(blackSquares.get(), 51)
+    blackSquares.background(200)
     points = tree.getPoints()
   }
 
@@ -80,7 +80,7 @@ new p5((p5) => {
       const squares = []
       for (let x = -1; x < 2; x++) {
         for (let y = -1; y < 2; y++) {
-          if (this.color != 255) {
+          if (this.color === 51) {
             let newR = this.r / 3
             if (x != 0 && y != 0) {
               squares.push(
@@ -88,7 +88,7 @@ new p5((p5) => {
                   this.pos.x + (x + 1) * newR,
                   this.pos.y + (y + 1) * newR,
                   newR,
-                  this.color
+                  51
                 )
               )
             } else {
@@ -117,14 +117,5 @@ new p5((p5) => {
       canvas.rect(0, 0, this.r, this.r)
       canvas.pop()
     }
-  }
-
-  function drawCross(w) {
-    p5.fill(255)
-    p5.rect(w, 0, w, w)
-    p5.rect(0, w, w, w)
-    p5.rect(w, w, w, w)
-    p5.rect(w * 2, w, w, w)
-    p5.rect(w, w * 2, w, w)
   }
 })

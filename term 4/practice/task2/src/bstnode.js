@@ -31,15 +31,15 @@ export class Node {
 
   setCoordinates() {
     if (this.left) {
-      this.left.x = this.x - 500 / 2 ** this.level
-      this.left.y = this.y + 100 * this.level
+      this.left.x = this.x - 500 / 1.5 ** this.level
+      this.left.y = this.y + 150 * this.level
       this.left.parent = this
       this.left.setCoordinates()
     }
 
     if (this.right) {
-      this.right.x = this.x + 500 / 2 ** this.level
-      this.right.y = this.y + 20 * this.level
+      this.right.x = this.x + 500 / 1.5 ** this.level
+      this.right.y = this.y + 150 * this.level
       this.right.parent = this
       this.right.setCoordinates()
     }
