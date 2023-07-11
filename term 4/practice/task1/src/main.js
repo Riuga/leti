@@ -19,6 +19,8 @@ new p5((p5) => {
   const radius = 20
   const divisions = 1440
   const invPoints = involute(radius, divisions)
+  let trajectory = []
+
   let i = 0
 
   p5.setup = () => {
@@ -27,17 +29,35 @@ new p5((p5) => {
 
   p5.draw = () => {
     p5.background(250)
-    p5.push()
-    drawInvolute(invPoints)
-    p5.pop()
+    drawLines(invPoints, 51)
 
     p5.push()
-    polygon(invPoints[i].x, invPoints[i].y, hexRadius || 20, 6, clr || 51)
+    p5.translate(invPoints[i].x, invPoints[i].y)
+    p5.rotate(p5.frameCount / 10.0)
+    polygon(0, 0, hexRadius || 20, 6, clr || 51)
+    trajectory.push({
+      x: (radius-5) * p5.cos(p5.frameCount / 10.0) + invPoints[i].x,
+      y: (radius-5) * p5.sin(p5.frameCount / 10.0) + invPoints[i].y,
+    })
     p5.pop()
+
+    p5.beginShape()
+    p5.stroke(255, 0, 0)
+    for (let j = 1; j < trajectory.length; j++) {
+      p5.line(
+        trajectory[j].x,
+        trajectory[j].y,
+        trajectory[j - 1].x,
+        trajectory[j - 1].y
+      )
+    }
+    p5.endShape()
+
     i++
 
     if (i === invPoints.length) {
       i = 0
+      trajectory = []
     }
   }
 
@@ -56,8 +76,8 @@ new p5((p5) => {
     return points
   }
 
-  function drawInvolute(involutePoints) {
-    p5.stroke(51)
+  function drawLines(involutePoints, color) {
+    p5.stroke(color)
     p5.strokeWeight(5)
     for (let i = 1; i < involutePoints.length; i++) {
       p5.line(
