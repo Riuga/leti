@@ -1,28 +1,59 @@
-#include "dos.h"
-#include "conio.h"
-#include "stdio.h"
-#include "iostream.h"
-#include "string.h"
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
 
-int ch = 0;
+void interrupt (*oldfunc)(...);
+
+int is_dot_pressed = 0;
+char str[100];
 int left = 0;
-int i = 0;
+int length = 0;
 
-int keypressed()
+void get_key()
 {
 	union REGS r;
-	r.h.ah = 0x0B;
+	r.h.ah = 0x6;
+	r.h.dl = 0xff;
 	int86(0x21, &r, &r);
-
-	return r.h.al;
 }
 
-int code()
+void interrupt my_interrupt(...)
 {
-	union REGS r;
-	r.h.ah = 0x7;
-	int86(0x21, &r, &r);
-	return r.h.al;
+	if (is_dot_pressed == 0)
+	{
+		get_key();
+		if (_AL != '.')
+		{
+			if (_AL == ' ')
+			{
+				str[length] = _AL;
+				length++;
+
+				while (left < length)
+				{
+					cout << str[left];
+					left++;
+				}
+			}
+			else if (_AL != NULL)
+			{
+				str[length] = _AL;
+				length++;
+			}
+		}
+		else
+		{
+			while (left < length)
+			{
+				cout << str[left];
+				left++;
+			}
+			cout << ".\n";
+			is_dot_pressed = 1;
+		}
+	}
+
+	_chain_intr(oldfunc);
 }
 
 int main()
@@ -31,32 +62,18 @@ int main()
 	textcolor(16);
 	clrscr();
 
-	char str[50] = "Lorem ipsum dolor sit amet.";
-
-	do
+	int counter = 0;
+	oldfunc = _dos_getvect(0x9);
+	_dos_setvect(0x9, my_interrupt);
+	while (is_dot_pressed == 0)
 	{
-
-		if (str[i] == ' ')
+		if (counter == 0)
 		{
-			do
-			{
-				if (keypressed())
-				{
-					ch = code();
-				}
-			} while (ch != 32);
-			cout << str[i];
-			ch = 0;
-			i++;
+			cout << "Enter a sentence. Text will be displayed when you press space, program will end when you press dot\n";
+			counter++;
 		}
-		else
-		{
-			cout << str[i];
-			i++;
-		}
-	} while (i < sizeof(str));
-
+	}
+	_dos_setvect(0x9, oldfunc);
 	getch();
 	return 0;
 }
-
