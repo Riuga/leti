@@ -8,11 +8,40 @@
   </head>
   <body>
     <div id="app">
-      Color: <input type="text" id="color" value="#" /> <button id="color-apply">Apply</button>
-      Radius: <input type="number" id="radius" value="20"/> <button id="radius-apply">Apply</button>
-      Rolling speed: <input type="number" id="roll-speed" value="0.04"/> <button id="roll-apply">Apply</button>
-      Involute radius: <input type="number" id="involute-radius" value="20"/> <button id="invRad-apply">Apply</button>
-      Step: <input type="number" id="step" value="0.5"/> <button id="step-apply">Apply</button>
+      <div>
+        Border color: <input type="text" id="border-color" value="#000" />
+        <button id="border-apply">Apply</button>
+      </div>
+      <div>
+        Fill color: <input type="text" id="fill-color" value="#FFF" />
+        <button id="color-apply">Apply</button>
+      </div>
+      <div>
+        Star radius 1: <input type="number" id="star-radius1" value="10" />
+        <button id="star1-apply">Apply</button>
+      </div>
+      <div>
+        Star radius 2: <input type="number" id="star-radius2" value="10" />
+        <button id="star2-apply">Apply</button>
+      </div>
+      <div>
+        Star points:: <input type="number" id="star-points" value="10" />
+        <button id="points-apply">Apply</button>
+      </div>
+      <div>
+        Rolling speed:
+        <input type="number" id="roll-speed" value="0.04" />
+        <button id="roll-apply">Apply</button>
+      </div>
+      <div>
+        Spiral radius:
+        <input type="number" id="spiral-b" value="5" />
+        <button id="b-apply">Apply</button>
+      </div>
+      <div>
+        <button id="pulsation">Pulsation</button>
+        <button id="position">Change position</button>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

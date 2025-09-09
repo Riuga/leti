@@ -1,3 +1,5 @@
+import { blackColors, whiteColors } from './colors.js'
+
 export class Node {
   constructor(val, color, x, y) {
     this.value = val
@@ -12,14 +14,14 @@ export class Node {
 
   addNode(n) {
     n.level++
-    if (n.color === 51) {
+    if (blackColors.includes(n.color)) {
       if (this.left === null) {
         this.left = n
         this.left.parent = this
       } else {
         this.left.addNode(n)
       }
-    } else if (n.color === 255) {
+    } else if (whiteColors.includes(n.color)) {
       if (this.right === null) {
         this.right = n
         this.right.parent = this

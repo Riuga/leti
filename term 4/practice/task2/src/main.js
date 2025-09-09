@@ -1,5 +1,6 @@
-import { Tree } from './bst.js'
 import p5 from 'p5'
+import { Tree } from './bst.js'
+import { blackColors, whiteColors } from './colors.js'
 
 // Формирование последовательного изображения фракталов (G шагов генерации) с отображением формирующихся уровней на дереве
 // Клетки на основе креста
@@ -13,16 +14,17 @@ new p5((p5) => {
   let points
   let blackSquares
   let whiteSquares
+  let colorCount = 0
 
   p5.setup = () => {
     p5.createCanvas(1600, 1600)
     blackSquares = p5.createGraphics(500, 500)
     whiteSquares = p5.createGraphics(500, 500)
-    blackSquares.background(51)
-    tree.addValue(blackSquares.get(), 51)
+    blackSquares.background(blackColors[colorCount % 10])
+    tree.addValue(blackSquares.get(), blackColors[colorCount % 10])
     blackSquares.background(200)
 
-    const fr = new Fractal(0, 0, fractalWidth, 51)
+    const fr = new Fractal(0, 0, fractalWidth, blackColors[colorCount % 10])
     fractals.push(fr)
   }
 
@@ -34,6 +36,7 @@ new p5((p5) => {
       next = next.concat(newFractals)
     }
     fractals = next
+    colorCount++
     updateTree()
   }
 
@@ -59,14 +62,14 @@ new p5((p5) => {
 
   function updateTree() {
     for (let i = 0; i < fractals.length; i++) {
-      if (fractals[i].color === 255) {
+      if (whiteColors.includes(fractals[i].color)) {
         fractals[i].show(whiteSquares)
       } else {
         fractals[i].show(blackSquares)
       }
     }
-    tree.addValue(whiteSquares.get(), 255)
-    tree.addValue(blackSquares.get(), 51)
+    tree.addValue(whiteSquares.get(), whiteColors[colorCount])
+    tree.addValue(blackSquares.get(), blackColors[colorCount])
     blackSquares.background(200)
     points = tree.getPoints()
   }
@@ -80,7 +83,7 @@ new p5((p5) => {
       const squares = []
       for (let x = -1; x < 2; x++) {
         for (let y = -1; y < 2; y++) {
-          if (this.color === 51) {
+          if (blackColors.includes(this.color)) {
             let newR = this.r / 3
             if (x != 0 && y != 0) {
               squares.push(
@@ -88,7 +91,7 @@ new p5((p5) => {
                   this.pos.x + (x + 1) * newR,
                   this.pos.y + (y + 1) * newR,
                   newR,
-                  51
+                  blackColors[colorCount]
                 )
               )
             } else {
@@ -97,7 +100,7 @@ new p5((p5) => {
                   this.pos.x + (x + 1) * newR,
                   this.pos.y + (y + 1) * newR,
                   newR,
-                  255
+                  whiteColors[colorCount]
                 )
               )
             }
