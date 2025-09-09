@@ -13,7 +13,9 @@ public class Test
     b2.Populate(100);
     b2.Write();
 
-    b1.TransferFrom(b2, 10);
+    int n = Int16.Parse(Console.ReadLine());
+
+    b1.TransferFrom(b2, n);
     b1.Write();
     b2.Write();
   }

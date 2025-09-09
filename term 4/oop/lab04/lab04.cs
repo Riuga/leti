@@ -20,7 +20,8 @@ public class Lab04
     Console.WriteLine("Enter a num for factorial:");
     int z = int.Parse(Console.ReadLine());
 
-    int factorial = Utils.Factorial(z);
+    int factorial;
+    Utils.Factorial(z, out factorial);
     Console.WriteLine("Factorial of {0} is {1}", z, factorial);
     
     int recursive = Utils.RecursiveFactorial(z);

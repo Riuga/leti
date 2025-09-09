@@ -13,14 +13,12 @@ public class Utils
     b = temp;
   }
 
-  public static int Factorial(int n) {
-    int result = 1;
+  public static void Factorial(int n, out int answer) {
+    answer = 1;
 
     for (int i = n; i > 1; i--) {
-      result *= i;
+      answer *= i;
     }
-
-    return result;
   }
 
   public static int RecursiveFactorial(int n) {

@@ -23,7 +23,7 @@ public class Lab05
       }
     }
 
-    Console.WriteLine("Vowels: {0}; Consonants: {1}; New line symbols: {2}", vowels, consonants, newLine);
+    Console.WriteLine("Vowels: {0}; Consonants: {1}; Lines: {2}", vowels, consonants, newLine + 1);
   }
 
   public static void WriteMatrix(int[,] matrix)
