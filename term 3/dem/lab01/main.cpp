@@ -9,7 +9,7 @@ const uint8_t BYTE_SIZE = 8;
 
 union type
 {
-  unsigned long long ll;
+  long long ll;
   long double d;
 };
 
@@ -32,14 +32,14 @@ void to_binary(const T &num)
   cout << output << endl;
 }
 
-unsigned long long shiffle_long_double(long double ldnum, int count, int num)
+long long shiffle_long_double(long double ldnum, int count, int num)
 {
-  unsigned long long shift = (unsigned long long)num - (unsigned long long)count + 1;
+  long long shift = (long long)num - (long long)count + 1;
   type in_long_double;
   in_long_double.d = ldnum;
-  unsigned long long mask = ((1 << (unsigned long long)count) - 1) << shift;
-  unsigned long long ext = (in_long_double.ll & mask) >> shift;
-  unsigned long long rev_ext = 0;
+  long long mask = ((1 << (long long)count) - 1) << shift;
+  long long ext = (in_long_double.ll & mask) >> shift;
+  long long rev_ext = 0;
   for (int i = 0; i < count; ++i)
   {
     rev_ext <<= 1;
@@ -51,12 +51,12 @@ unsigned long long shiffle_long_double(long double ldnum, int count, int num)
   return (in_long_double.ll & ~mask) | rev_ext;
 }
 
-unsigned int shiffle_char(unsigned int num, int c, int n)
+int shiffle_char(int num, int c, int n)
 {
   int shift = n - c + 1;
-  unsigned int mask = ((1 << c) - 1) << shift;
-  unsigned int ext = (num & mask) >> shift;
-  unsigned int rev_ext = 0;
+  int mask = ((1 << c) - 1) << shift;
+  int ext = (num & mask) >> shift;
+  int rev_ext = 0;
   int i;
   for (i = 0; i < c; ++i)
   {

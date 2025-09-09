@@ -27,7 +27,7 @@ int main()
 		textbackground(i);
 		for (int j = 0; j < num_colors; j++)
 		{
-			textcolor(j);û
+			textcolor(j);
 
 			Background(i);
 			Text(j);
