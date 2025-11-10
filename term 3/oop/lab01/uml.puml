@@ -1,0 +1,26 @@
+@startuml WikipediaSearcherApp
+    class WikipediaAPI {
+        -String api_url
+        -Session session
+        +WikipediaAPI(api_url: String)
+        +search_articles(String) List~String~
+        +get_article_url(String) String
+        +close() void
+    }
+
+    class WikipediaSearch {
+        -WikipediaAPI client_api
+        +WikipediaSearch(WikipediaAPI)
+        +perform_search(String) List~String~
+        +open_article(List~String~) void
+    }
+
+    class WikipediaApp {
+        -WikipediaAPI client_api
+        -WikipediaSearch client_search
+        +WikipediaApp()
+        +run() void
+    }
+
+    WikipediaApp --> WikipediaSearch
+    WikipediaSearch --> WikipediaAPI
