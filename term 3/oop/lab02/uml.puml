@@ -1,0 +1,51 @@
+@startuml ParsingApp
+    class CityBuilding {
+        -String city
+        -String street
+        -String house
+        -int floor
+        +__init__(city, street, house, floor)
+        +__eq__(other) bool
+        +__hash__() int
+        +__str__() String
+    }
+
+    class CityStatistics {
+        -List~CityBuilding~ buildings
+        +__init__()
+        +add_building(building: CityBuilding)
+        +find_duplicates() Dict~CityBuilding, int~
+        +get_floors_statistics() Dict~String, Dict~int, int~~
+    }
+
+    class FileParser {
+        <<Abstract>>
+        +parse_file(file_path: String) CityStatistics
+    }
+
+    class XMLParser {
+        +parse_file(file_path: String) CityStatistics
+    }
+
+    class CSVParser {
+        +parse_file(file_path: String) CityStatistics
+    }
+
+    class CityStatisticsApp {
+        -Dict~String, FileParser~ parsers
+        +__init__()
+        +get_file_extension(file_path: String) String
+        +is_supported_format(file_path: String) bool
+        +parse_city_file(file_path: String) Tuple~CityStatistics, float~
+        +display_statistics(statistics: CityStatistics, processing_time: float)
+        +run()
+    }
+
+    FileParser <|-- XMLParser
+    FileParser <|-- CSVParser
+    
+    CityStatisticsApp --> FileParser : uses
+    CityStatisticsApp --> CityStatistics : creates
+    CityStatistics --> CityBuilding : contains
+    XMLParser --> CityStatistics : creates
+    CSVParser --> CityStatistics : creates
