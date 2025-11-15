@@ -76,32 +76,6 @@ class Tournament {
     }
 
     // Getters and setters
-    fun getID(): Long? { return this.id }
-    fun setID(id: Long) {this.id = id}
-
-    fun getTitle():String? { return this.title }
-    fun setTitle(title: String) {this.title = title}
-
-    fun getPrizePool():Int {return this.prizePool}
-    fun setPrizePool(prizePool: Int) {this.prizePool = prizePool}
-
-    fun getDescription(): String? {return this.description}
-    fun setDescription(description: String) {this.description = description}
-
-    fun getGame(): GameType {return this.game}
-    fun setGame(game: GameType) {this.game = game}
-
-    fun getStartDate(): LocalDate? {return this.startDate}
-    fun setStartDate(startDate: LocalDate) {this.startDate = startDate}
-
-    fun getEndDate(): LocalDate? {return this.endDate}
-    fun setEndDate(endDate: LocalDate) {this.endDate = endDate}
-
-    fun getStatus(): TournamentStatus {return this.status}
-    fun setStatus(status: TournamentStatus) {this.status = status}
-
-    fun getTeams(): MutableList<Team> {return this.teams}
-    fun setTeams(teams: MutableList<Team>) {this.teams = teams}
     fun addTeam(team: Team) {
         if (team !in this.teams) {
             team.addTournament(this)
@@ -109,14 +83,8 @@ class Tournament {
         }
     }
 
-    fun getMatches(): MutableList<Match> {return this.matches}
-    fun setMatches(matches: MutableList<Match>) {this.matches = matches}
     fun addMatch(match: Match) {
-        match.setTournament(this)
+        match.tournament = this
         this.matches.add(match)
     }
-
-    fun getMaxTeams(): Int? {return this.maxTeams}
-    fun setMaxTeams(maxTeams: Int) {this.maxTeams = maxTeams}
-
 }

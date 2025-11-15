@@ -40,26 +40,6 @@ class Rating {
     }
 
     // Getters and setters
-    fun getID(): Long? {return this.id}
-    fun setID(id: Long) {this.id = id}
-
-    fun getTeam(): Team? {return this.team}
-    fun setTeam(team: Team) {this.team = team}
-
-    fun getRating(): Int {return this.rating}
-    fun setRating(rating: Int) {this.rating = rating}
-
-    fun getWins(): Int {return this.wins}
-    fun setWins(wins: Int) {this.wins = wins}
-
-    fun getLosses(): Int {return this.losses}
-    fun setLosses(losses: Int) {this.losses = losses}
-
-    fun getLastUpdated(): LocalDate {return this.lastUpdated}
-    fun setLastUpdated(date: LocalDate) {this.lastUpdated = date}
-
-    fun getGame(): GameType {return this.game}
-    fun setGame(game: GameType) {this.game = game}
 
     fun getWinRate(): Double {
         val totalGames = this.wins + this.losses

@@ -58,29 +58,6 @@ class Team {
     }
 
     // Getters and setters
-    fun getID(): Long? {return this.id}
-    fun setID(id: Long) {this.id = id}
-
-    fun getName(): String? {return this.name}
-    fun setName(name: String) {this.name = name}
-
-    fun getTag(): String? {return this.tag}
-    fun setTag(tag: String) {this.tag = tag}
-
-    fun getDescription(): String? {return this.description}
-    fun setDescription(description: String) {this.description = description}
-
-    fun getLogoUrl(): String? {return this.logoUrl}
-    fun setLogoUrl(logoUrl: String) {this.logoUrl = logoUrl}
-
-    fun getCreatedDate(): LocalDate? {return this.createdDate}
-    fun setCreatedDate(date: LocalDate) {this.createdDate = date}
-
-    fun getRatings(): MutableList<Rating> {return this.ratings}
-    fun setRatings(ratings: MutableList<Rating>) {this.ratings = ratings}
-
-    fun getTournaments(): MutableList<Tournament> {return this.tournaments}
-    fun setTournaments(tournaments: MutableList<Tournament>) {this.tournaments = tournaments}
     fun addTournament(tournament: Tournament) {
         if (tournament !in this.tournaments) {
             tournament.addTeam(this)
