@@ -1,7 +1,7 @@
 package com.riuga.cybersportsapp.entity
-import com.riuga.cybersportsapp.entity.enums.MatchStatus
+
 import jakarta.persistence.*
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "matches")
@@ -10,45 +10,43 @@ class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tournament_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "tournament_id")
     var tournament: Tournament? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team1_id")
     var team1: Team? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team2_id")
     var team2: Team? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
+    var date: LocalDateTime? = null
+
+    @Column(name = "score_team1")
+    var scoreTeam1: Int? = 0
+
+    @Column(name = "score_team2")
+    var scoreTeam2: Int? = 0
+
+    @ManyToOne
     @JoinColumn(name = "winner_id")
     var winner: Team? = null
 
-    @Column(name = "match_date")
-    var matchDate: LocalDate? = null
+    @Column
+    var status: String? = "SCHEDULED" // SCHEDULED, LIVE, FINISHED
 
-    @Column(name = "match_order")
-    var matchOrder: Int = 0
+    @Column
+    var stage: String? = null // Group Stage, Quarterfinal, Semifinal, Final
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    var status: MatchStatus = MatchStatus.SCHEDULED
-
-    @Column(name = "team1_score")
-    var team1Score: Int? = null
-
-    @Column(name = "team2_score")
-    var team2Score: Int? = null
-
-    // Constructors
     constructor()
 
-    constructor(tournament: Tournament?, team1: Team?, team2: Team?, matchOrder: Int) {
+    constructor(tournament: Tournament, team1: Team, team2: Team, date: LocalDateTime) {
         this.tournament = tournament
         this.team1 = team1
         this.team2 = team2
-        this.matchOrder = matchOrder
+        this.date = date
     }
 }

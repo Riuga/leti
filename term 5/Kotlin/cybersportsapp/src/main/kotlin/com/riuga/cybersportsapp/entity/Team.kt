@@ -1,9 +1,6 @@
 package com.riuga.cybersportsapp.entity
 
 import jakarta.persistence.*
-import org.springframework.context.annotation.Description
-import org.springframework.data.annotation.CreatedDate
-import java.time.LocalDate
 
 @Entity
 @Table(name = "teams")
@@ -16,52 +13,33 @@ class Team {
     var name: String? = null
 
     @Column
-    var tag: String? = null
+    var tag: String? = null // Сокращенное название (NaVi, G2 и т.д.)
 
-    @Column(length = 1000)
-    var description: String? = null
+    @Column
+    var country: String? = null
 
-    @Column(name = "logo_url")
+    @Column(name = "founded_year")
+    var foundedYear: Int? = null
+
+    @Column
+    var coach: String? = null
+
+    @Column
     var logoUrl: String? = null
 
-    @Column(name = "created_date")
-    var createdDate: LocalDate = LocalDate.now()
+    @OneToMany(mappedBy = "team", cascade = [CascadeType.ALL])
+    var players: MutableList<Player> = mutableListOf()
 
-    @OneToMany(mappedBy = "team", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var ratings: MutableList<Rating> = mutableListOf()
+    @OneToOne(mappedBy = "team", cascade = [CascadeType.ALL])
+    var rating: TeamRating? = null
 
-    @ManyToMany(mappedBy = "teams", fetch = FetchType.LAZY)
-    var tournaments: MutableList<Tournament> = mutableListOf()
+    @ManyToMany(mappedBy = "teams")
+    var tournaments: MutableSet<Tournament> = mutableSetOf()
 
-    // Constructors
     constructor()
 
-    constructor(name: String?, tag: String?) {
+    constructor(name: String, country: String) {
         this.name = name
-        this.tag = tag
-    }
-    constructor(name: String?, tag: String?, description: String?, logoUrl: String?, createdDate: LocalDate) {
-        this.name = name
-        this.tag = tag
-        this.description = description
-        this.logoUrl = logoUrl
-        this.createdDate = createdDate
-    }
-    constructor(name: String?, tag: String?, description: String?, logoUrl: String?, createdDate: LocalDate, ratings: MutableList<Rating>, tournaments:MutableList<Tournament>) {
-        this.name = name
-        this.tag = tag
-        this.description = description
-        this.logoUrl = logoUrl
-        this.createdDate = createdDate
-        this.ratings = ratings
-        this.tournaments = tournaments
-    }
-
-    // Getters and setters
-    fun addTournament(tournament: Tournament) {
-        if (tournament !in this.tournaments) {
-            tournament.addTeam(this)
-            this.tournaments.add(tournament)
-        }
+        this.country = country
     }
 }
